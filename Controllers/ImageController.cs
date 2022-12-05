@@ -21,11 +21,18 @@ namespace DemoJWT_MySQL.Controllers
             _imageService = imageService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         [Authorize(Roles = RoleConstant.Admin)]
         public List<ImageDTO> getImage()
         {
             return _imageService.getImage();
+        }
+
+        [HttpGet("GetByToken")]
+        [Authorize(Roles = RoleConstant.Admin + "," + RoleConstant.Citizen)]
+        public List<ImageDTO> getImageByToken()
+        {
+            return _imageService.getImageByToken();
         }
     }
 }
