@@ -198,13 +198,35 @@ namespace DemoJWT_MySQL.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Url = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Images_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1B3D7E19-B1A5-4CA2-A491-54593FA16531", "7af7dfed-4c1a-445f-bdb0-56f2fb4adabc", "Citizen", "CITIZEN" },
-                    { "8D04DCE2-969A-435D-BBA4-DF3F325983DC", "2486bff5-eec2-4250-a2d0-4f5f4b6154c4", "Admin", "ADMIN" }
+                    { "1B3D7E19-B1A5-4CA2-A491-54593FA16531", "74e4d17a-f85c-4870-bc4e-9ba01e5f38f1", "Citizen", "CITIZEN" },
+                    { "8D04DCE2-969A-435D-BBA4-DF3F325983DC", "6447ae4d-8336-4bf3-a7f4-123d49cf944f", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -212,19 +234,28 @@ namespace DemoJWT_MySQL.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "69BD714F-9576-45BA-B5B7-F00649BE00DE", 0, "ba637654-70af-4542-be74-08c7b7329679", "admin@gmail.com", true, "Admin", "Admin", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEOHgDAPys3OktSdFo+EcfLLuiNNUsqCzLGsXvMEQ7ufUzdO5VWUEZwPXCk63zld4aA==", null, false, "", false, "admin@gmail.com" },
-                    { "70BD714F-9576-45BA-B5B7-F00649BE00DE", 0, "ba637654-70af-4542-be74-08c7b7329679", "citizen@gmail.com", true, "Citizen", "Citizen", false, null, "CITIZEN@GMAIL.COM", "CITIZEN@GMAIL.COM", "AQAAAAEAACcQAAAAEOHgDAPys3OktSdFo+EcfLLuiNNUsqCzLGsXvMEQ7ufUzdO5VWUEZwPXCk63zld4aA==", null, false, "", false, "citizen@gmail.com" }
+                    { "69BD714F-9576-45BA-B5B7-F00649BE00DE", 0, "ba637654-70af-4542-be74-08c7b7329679", "admin@gmail.com", true, "Admin", "Admin", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEGc0bY4qK1e16Q3wwDh2/YWD3YgOsH+ADuDmA2vK9LtT0RzYU0K1ZRt6Tb6Hxg+9jg==", null, false, "", false, "admin@gmail.com" },
+                    { "70BD714F-9576-45BA-B5B7-F00649BE00DE", 0, "ba637654-70af-4542-be74-08c7b7329679", "citizen@gmail.com", true, "Citizen", "Citizen", false, null, "CITIZEN@GMAIL.COM", "CITIZEN@GMAIL.COM", "AQAAAAEAACcQAAAAEL8yBo0YMgKi1Scicpp6TRQCoJ0YM5HxYDgZ4o5/cebpDK5pqfcMfamnVDAmG0trXg==", null, false, "", false, "citizen@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "1B3D7E19-B1A5-4CA2-A491-54593FA16531", "70BD714F-9576-45BA-B5B7-F00649BE00DE" });
+                values: new object[,]
+                {
+                    { "1B3D7E19-B1A5-4CA2-A491-54593FA16531", "70BD714F-9576-45BA-B5B7-F00649BE00DE" },
+                    { "8D04DCE2-969A-435D-BBA4-DF3F325983DC", "69BD714F-9576-45BA-B5B7-F00649BE00DE" }
+                });
 
             migrationBuilder.InsertData(
-                table: "AspNetUserRoles",
-                columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "8D04DCE2-969A-435D-BBA4-DF3F325983DC", "69BD714F-9576-45BA-B5B7-F00649BE00DE" });
+                table: "Images",
+                columns: new[] { "Id", "Url", "UserId" },
+                values: new object[,]
+                {
+                    { new Guid("1dfd84a6-686a-4dc7-8daf-cb823f3d7d15"), "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png", "70BD714F-9576-45BA-B5B7-F00649BE00DE" },
+                    { new Guid("cb4be902-c6f0-4391-bf58-49f24fd50f0d"), "https://lh3.googleusercontent.com/a/AEdFTp5O41syiiOXKyYwoNE8UWt4mp2GAszsgxyV3n_C=s317-p-rw-no", "70BD714F-9576-45BA-B5B7-F00649BE00DE" },
+                    { new Guid("ce47f1ec-f00f-44a3-8b8d-4190028d228f"), "https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg", "69BD714F-9576-45BA-B5B7-F00649BE00DE" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -262,6 +293,11 @@ namespace DemoJWT_MySQL.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Images_UserId",
+                table: "Images",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -280,6 +316,9 @@ namespace DemoJWT_MySQL.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

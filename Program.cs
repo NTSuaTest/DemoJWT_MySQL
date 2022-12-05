@@ -12,6 +12,8 @@ builder.Services.AddCustomDbContext(builder);
 
 builder.Services.RegisterApiServices();
 
+builder.Services.AddJWT(builder);
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy",
@@ -21,7 +23,13 @@ builder.Services.AddCors(options =>
                                     .AllowCredentials());
 });
 
+builder.Services.AddSwagger();
+
+builder.Services.RegisterCustomServices();
+
 var app = builder.Build();
+
+app.UseCors("CorsPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -31,6 +39,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

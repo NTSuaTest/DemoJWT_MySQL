@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoJWT_MySQL.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20221205081504_Add_Image")]
-    partial class Add_Image
+    [Migration("20221205101046_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,19 +44,19 @@ namespace DemoJWT_MySQL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("597089e0-5148-4696-92fc-8aa252385722"),
+                            Id = new Guid("cb4be902-c6f0-4391-bf58-49f24fd50f0d"),
                             Url = "https://lh3.googleusercontent.com/a/AEdFTp5O41syiiOXKyYwoNE8UWt4mp2GAszsgxyV3n_C=s317-p-rw-no",
                             UserId = "70BD714F-9576-45BA-B5B7-F00649BE00DE"
                         },
                         new
                         {
-                            Id = new Guid("9adac76e-e9d0-4419-b2f9-182373b4be7b"),
+                            Id = new Guid("1dfd84a6-686a-4dc7-8daf-cb823f3d7d15"),
                             Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png",
                             UserId = "70BD714F-9576-45BA-B5B7-F00649BE00DE"
                         },
                         new
                         {
-                            Id = new Guid("c248c929-7e74-4f9f-a665-c0b377819691"),
+                            Id = new Guid("ce47f1ec-f00f-44a3-8b8d-4190028d228f"),
                             Url = "https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg",
                             UserId = "69BD714F-9576-45BA-B5B7-F00649BE00DE"
                         });
@@ -146,7 +146,7 @@ namespace DemoJWT_MySQL.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOHgDAPys3OktSdFo+EcfLLuiNNUsqCzLGsXvMEQ7ufUzdO5VWUEZwPXCk63zld4aA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGc0bY4qK1e16Q3wwDh2/YWD3YgOsH+ADuDmA2vK9LtT0RzYU0K1ZRt6Tb6Hxg+9jg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -164,7 +164,7 @@ namespace DemoJWT_MySQL.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CITIZEN@GMAIL.COM",
                             NormalizedUserName = "CITIZEN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOHgDAPys3OktSdFo+EcfLLuiNNUsqCzLGsXvMEQ7ufUzdO5VWUEZwPXCk63zld4aA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL8yBo0YMgKi1Scicpp6TRQCoJ0YM5HxYDgZ4o5/cebpDK5pqfcMfamnVDAmG0trXg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -201,14 +201,14 @@ namespace DemoJWT_MySQL.Migrations
                         new
                         {
                             Id = "8D04DCE2-969A-435D-BBA4-DF3F325983DC",
-                            ConcurrencyStamp = "41b05c84-681e-4e30-b330-ad78d05d86a9",
+                            ConcurrencyStamp = "6447ae4d-8336-4bf3-a7f4-123d49cf944f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "1B3D7E19-B1A5-4CA2-A491-54593FA16531",
-                            ConcurrencyStamp = "da48a933-6f62-4264-84b4-799f4762f107",
+                            ConcurrencyStamp = "74e4d17a-f85c-4870-bc4e-9ba01e5f38f1",
                             Name = "Citizen",
                             NormalizedName = "CITIZEN"
                         });
