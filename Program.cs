@@ -1,4 +1,6 @@
+using DemoJWT_MySQL.Entity;
 using DemoJWT_MySQL.Extentions;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,8 +33,18 @@ var app = builder.Build();
 
 app.UseCors("CorsPolicy");
 
+if (!app.Environment.IsDevelopment())
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        var context = services.GetRequiredService<ApiDbContext>();
+        context.Database.Migrate();
+    }
+}
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
